@@ -1,5 +1,30 @@
 * General Customizations
 Here is where I am doing some basic customization for Writermacs, such as the user's full name, the user's email, etc.
 #+BEGIN_SRC emacs-lisp
-
+(setq user-full-name "Your Name"
+      user-mail-address "your_email@someaddress.com")
+(setq-default custom-file "~/.emacs.d/custom.el")
 #+END_SRC
+* Package Initialization and Bootstrapping
+** Package Initialization and Extra Sources
+I am adding extra sources to my package archives here.
+
+#+BEGIN_SRC emacs-lisp
+(require 'package)
+(setq package-enable-at-startup nil)
+(setq package-archives '(("org"   . "http://orgmode.org/elpa/")
+                         ("gnu"   . "http://elpa.gnu.org/packages/")
+                         ("melpa" . "https://melpa.org/packages/")))
+(package-initialize)
+#+END_SRC
+** Bootstrapping
+Here is where I am using the bootstrapping with use-package.
+
+#+BEGIN_SRC emacs-lisp
+;; Bootstrap `use-package`
+(unless (package-installed-p 'use-package)
+  (package-refresh-contents)
+  (package-install 'use-package))
+(require 'use-package)
+#+END_SRC
+* Packages 
