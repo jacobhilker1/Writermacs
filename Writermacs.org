@@ -28,3 +28,140 @@ Here is where I am using the bootstrapping with use-package.
 (require 'use-package)
 #+END_SRC
 * Packages 
+** General Packages
+**** EVIL and EVIL-ORG
+I am installing evil and evil-collection for vim keybindings in emacs.
+#+BEGIN_SRC emacs-lisp
+(use-package undo-tree
+:ensure t)
+
+(use-package evil
+  :ensure t
+  :init
+  (setq evil-want-integration t) ;; This is optional since it's already set to t by default.
+  (setq evil-want-keybinding nil)
+  :config
+  (evil-mode 1))
+
+(use-package evil-collection
+  :after evil
+  :ensure t
+  :config
+  (evil-collection-init))
+#+END_SRC
+
+**** Imenu-List
+Imenu-list allows me to get an overview of my code or outline for an
+AAR/novel. Here I enable it and install it.
+
+#+BEGIN_SRC emacs-lisp
+(use-package imenu-list
+:ensure t
+:config
+(setq-default imenu-list-position "left"))
+
+;(imenu-list-minor-mode t)
+#+END_SRC
+
+**** Which-Key
+Which-key enables me to see what keys I can use.
+#+BEGIN_SRC emacs-lisp
+(use-package which-key
+:ensure t
+:config
+(which-key-mode 1))
+#+END_SRC
+
+**** Magit
+Magit enables me to use git while in emacs. I enable it and install it here.
+#+BEGIN_SRC emacs-lisp
+(use-package magit
+:ensure t)
+#+END_SRC
+
+**** All-The-Icons
+**** Dashboard
+Dashboard lets me see recent files as well as projects.
+#+BEGIN_SRC emacs-lisp
+(use-package dashboard
+  :ensure t
+  :config
+  (dashboard-setup-startup-hook))
+;  :after (org-super-agenda))
+#+END_SRC
+**** General.el
+
+#+BEGIN_SRC emacs-lisp
+(use-package general
+:ensure t)
+#+END_SRC
+
+**** Unfill
+For toggling fill and unfill.
+
+#+BEGIN_SRC emacs-lisp
+(use-package unfill
+:ensure t)
+#+END_SRC
+**** YASnippet
+#+BEGIN_SRC emacs-lisp
+(use-package yasnippet
+:ensure t
+:config
+(yas-global-mode t))
+(use-package yasnippet-snippets
+:ensure t)
+#+END_SRC
+
+**** Restart Emacs
+ 
+**** Smartparens and Evil-Smartparens
+#+BEGIN_SRC emacs-lisp
+(use-package smartparens
+:ensure t
+:config
+(smartparens-global-mode t))
+(use-package evil-smartparens
+:ensure t
+:after (smartparens evil evil-collection))
+#+END_SRC
+**** Treemacs
+#+BEGIN_SRC emacs-lisp
+(use-package treemacs
+:ensure t
+:config
+
+
+(use-package treemacs-evil
+:after evil treemacs
+:ensure t)
+
+(use-package treemacs-magit
+:after magit treemacs
+:ensure t)
+#+END_SRC
+
+** Completion Packages
+*** Ivy
+#+BEGIN_SRC emacs-lisp
+(use-package ivy
+:ensure t
+:config
+(ivy-mode 1))
+#+END_SRC
+
+*** Counsel
+Counsel allows us to utilize ivy by replacing many built-in and common
+functions with richer versions. Let’s install it!
+
+#+BEGIN_SRC emacs-lisp
+;(use-package counsel-projectile)
+(use-package counsel
+:ensure t)
+#+END_SRC
+
+*** Swiper
+#+BEGIN_SRC emacs-lisp
+(use-package swiper
+  :commands (swiper swiper-all))
+#+END_SRC
