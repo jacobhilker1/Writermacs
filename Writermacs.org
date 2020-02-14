@@ -1,0 +1,5 @@
+* General Customizations
+Here is where I am doing some basic customization for Writermacs, such as the user's full name, the user's email, etc.
+#+BEGIN_SRC emacs-lisp
+
+#+END_SRC
